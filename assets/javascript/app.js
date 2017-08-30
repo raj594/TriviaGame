@@ -1,6 +1,7 @@
 window.onload = function() {
 
   //  Click events are done for us:
+  $('.answer').hide();
   $("#start").click(logic.start);
   $("#answer1").click(logic.check);
   $("#answer2").click(logic.check);
@@ -88,6 +89,7 @@ var logic = {
   unanswered: 0,
   correct: 0,
   incorrect: 0,
+  completed: false,
 
   reset: function() {
         logic.time = 30;
@@ -99,41 +101,39 @@ var logic = {
   timeUp: function() {
       logic.unanswered++;
       logic.stop();
-      if(logic.questionCount <= 9){
-      $('#question').text("Oops, You ran out of time!");
-      $('#answer1').text("");
-      $('#answer2').text("");
-      $('#answer3').text("");
-      $('#answer4').text("");
-      $('#unanswered').text("Unanswered: " + logic.unanswered);
-      $('#start').text("Next Question");
-    }
+      if(logic.completed == false){
+        $('#question').text("Oops, You ran out of time!");
+        $('#answer1').text("");
+        $('#answer2').text("");
+        $('#answer3').text("");
+        $('#answer4').text("");
+        $('.answer').hide();
+        $('#start').text("Next Question");
+      }
   },
 
   check: function() {
-      logic.stop();
-      if(logic.questionCount < 9){
-      $('#question').text("");
-      $('#answer1').text("");
-      $('#answer2').text("");
-      $('#answer3').text("");
-      $('#answer4').text("");
-      $('#start').text("Next Question");
       if ($(this).attr('correct') == 'true'){
-        logic.correct++;
-        $('#correct').text("Correct: " + logic.correct);
-        $('#question').text("Correct!");
+          logic.correct++;
+          $('#question').text("Correct!");
       } else if ($(this).attr('correct') == 'false') {
-        logic.incorrect++;
-        $('#incorrect').text("Incorrect: " + logic.incorrect);
-        $('#question').text("Incorrect!");
+          logic.incorrect++;
+          $('#question').text("Incorrect!");
       }
-    }
+      $('.answer').hide();
+      logic.stop();
+      if(logic.completed == false){
+        $('#answer1').text("");
+        $('#answer2').text("");
+        $('#answer3').text("");
+        $('#answer4').text("");
+        $('#start').text("Next Question");
+      }
 
   },
 
   start: function() {
-      if (!clockRunning) {
+      if (!clockRunning && logic.completed == false) {
         logic.time = 30;
         clockRunning = true;
         questionTime = setInterval(logic.count, 100);
@@ -146,21 +146,34 @@ var logic = {
         $('#answer2').attr("correct", questions[logic.questionCount].answer2[1]);
         $('#answer3').attr("correct", questions[logic.questionCount].answer3[1]);
         $('#answer4').attr("correct", questions[logic.questionCount].answer4[1]);
+        $('.answer').show();
+        $('#start').text("Next Question");
+        logic.questionCount++;
+      } else if (logic.completed == true){
+        logic.unanswered = 0;
+        logic.correct = 0;
+        logic.incorrect = 0;
+        $('#unanswered').text("");
+        $('#correct').text("");
+        $('#incorrect').text("");
+        logic.completed = false;
+        logic.start();
       }
-      logic.questionCount++;
   },
 
   stop: function() {
     clockRunning = false;
     clearInterval(questionTime);
-    alert(logic.questionCount);
     if(logic.questionCount == 9){
       logic.questionCount = 0;
-      logic.correct = 0;
-      logic.incorrect = 0;
-      logic.unanswered = 0;
+      logic.completed = true;
       $('#start').text("Start Over?");
+      $('.answer').hide();
       $('#question').text("Here's how you did:");
+      $('#answer1').text("");
+      $('#answer2').text("");
+      $('#answer3').text("");
+      $('#answer4').text("");
       $('#unanswered').text("Unanswered: " + logic.unanswered);
       $('#correct').text("Correct: " + logic.correct);
       $('#incorrect').text("Incorrect: " + logic.incorrect);

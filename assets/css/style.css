@@ -5,3 +5,17 @@
 body {
 	text-align: center;
 }
+
+.answer {
+	overflow: auto;
+	background-color: lightblue;
+	width: 10%;
+	height: auto;
+	margin: auto;
+	margin-top: 15px;
+	padding: 15px 50px 15px 50px;
+}
+
+.answer:hover {
+	box-shadow: 0 0 5px #000
+}
