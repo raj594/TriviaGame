@@ -9,75 +9,72 @@ window.onload = function() {
   $("#answer4").click(logic.check);
 };
 
-//  Variable that will hold our setInterval that runs the stopwatch
 var questionTime;
-
-//prevents the clock from being sped up unnecessarily
 var clockRunning = false;
 
 var questions =  [
   {
-    question: "q1",
-    answer1: ["a1f1", false],
-    answer2: ["a1f2", true],
-    answer3: ["a1f3", false],
-    answer4: ["a1c", false]
+    question: "Which college has burnt orange as a color?",
+    answer1: ["Tennessee", false],
+    answer2: ["Texas", true],
+    answer3: ["Oregon State", false],
+    answer4: ["Oklahoma State", false]
   },
   {
-    question: "q2",
-    answer1: ["a2f1", false],
-    answer2: ["a2f2", false],
-    answer3: ["a2f3", false],
-    answer4: ["a2c", true]
+    question: "What NFL team has a star as thier symbol and cry-babies for fans?",
+    answer1: ["New England Patriots", false],
+    answer2: ["Arizona Cardinals", false],
+    answer3: ["Washington Redskins", false],
+    answer4: ["Dallas Cowboys", true]
   },
   {
-    question: "q3",
-    answer1: ["a3f1", true],
-    answer2: ["a3f2", false],
-    answer3: ["a3f3", false],
-    answer4: ["a3c", false]
+    question: "What NBA team from Texas has the most championships?",
+    answer1: ["San Antonio Spurs", true],
+    answer2: ["Houston Rockets", false],
+    answer3: ["Dallas Mavericks", false],
+    answer4: ["Texas Longhorns", false]
   },
   {
-    question: "q4",
-    answer1: ["a4f1", false],
-    answer2: ["a4f2", false],
-    answer3: ["a4f3", true],
-    answer4: ["a4c", false]
+    question: "Who is the only person to play in both a World Series and a Superbowl?",
+    answer1: ["Vince Young", false],
+    answer2: ["Tiger Woods", false],
+    answer3: ["Deione Sanders", true],
+    answer4: ["Bo Jackson", false]
   },
   {
-    question: "q5",
-    answer1: ["a5f1", false],
-    answer2: ["a5f2", true],
-    answer3: ["a5f3", false],
-    answer4: ["a5c", false]
+    question: "Which Dallas Cowboys Running Back has the most rushing yards in NFL history?",
+    answer1: ["Barry Sanders", false],
+    answer2: ["Emmit Smith", true],
+    answer3: ["Ezekiel Elliot", false],
+    answer4: ["Tony Romo", false]
   },
   {
-    question: "q6",
-    answer1: ["a6f1", false],
-    answer2: ["a6f2", false],
-    answer3: ["a6f3", true],
-    answer4: ["a6c", false]
+    question: "Which NBA Player took the \"hardest road\" to join the Golden State Warriors and lead them to an NBA Championship in 2016?",
+    answer1: ["Michael Jordan", false],
+    answer2: ["LeBron James", false],
+    answer3: ["Kevin Durant", true],
+    answer4: ["Steph Curry", false]
   },
   {
-    question: "q7",
-    answer1: ["a7f1", true],
-    answer2: ["a7f2", false],
-    answer3: ["a7f3", false],
-    answer4: ["a7c", false]
+    question: "In what year was the official Iditarod Trail Sled Dog Race first held?",
+    answer1: ["1973", true],
+    answer2: ["1953", false],
+    answer3: ["1898", false],
+    answer4: ["1910", false]
   },
   {
-    question: "q8",
-    answer1: ["a8f1", false],
-    answer2: ["a8f2", false],
-    answer3: ["a8f3", false],
-    answer4: ["a8c", true]
+    question: "Where did the game of curling originate?",
+    answer1: ["Texas", false],
+    answer2: ["Switzerland", false],
+    answer3: ["Italy", false],
+    answer4: ["Scotland", true]
   },
   {
-    question: "q9",
-    answer1: ["a9f1", true],
-    answer2: ["a9f2", false],
-    answer3: ["a9f3", false],
-    answer4: ["a9c", false]
+    question: "What boxer beat Connor McGregor to become 50-0?",
+    answer1: ["Floyd Mayweather", true],
+    answer2: ["Mohammed Ali", false],
+    answer3: ["Mike Tyson", false],
+    answer4: ["Cassius Clay", false]
   },
 ];
 
@@ -102,7 +99,7 @@ var logic = {
       logic.unanswered++;
       logic.stop();
       if(logic.completed == false){
-        $('#question').text("Oops, You ran out of time!");
+        $('#question').html("Oops, You ran out of time!");
         $('#answer1').text("");
         $('#answer2').text("");
         $('#answer3').text("");
@@ -114,8 +111,9 @@ var logic = {
 
   check: function() {
       if ($(this).attr('correct') == 'true'){
+        console.log($(this));
           logic.correct++;
-          $('#question').text("Correct!");
+          $('#question').html("Correct!");
       } else if ($(this).attr('correct') == 'false') {
           logic.incorrect++;
           $('#question').text("Incorrect!");
@@ -136,7 +134,7 @@ var logic = {
       if (!clockRunning && logic.completed == false) {
         logic.time = 30;
         clockRunning = true;
-        questionTime = setInterval(logic.count, 100);
+        questionTime = setInterval(logic.count, 1000);
         $('#question').text(questions[logic.questionCount].question);
         $('#answer1').text(questions[logic.questionCount].answer1[0]);
         $('#answer2').text(questions[logic.questionCount].answer2[0]);
