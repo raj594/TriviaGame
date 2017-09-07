@@ -59,22 +59,22 @@ var questions =  [
     question: "In what year was the official Iditarod Trail Sled Dog Race first held?",
     answer1: ["1973", true],
     answer2: ["1953", false],
-    answer3: ["1898", false],
-    answer4: ["1910", false]
+    answer3: ["1983", false],
+    answer4: ["1963", false]
   },
   {
-    question: "Where did the game of curling originate?",
-    answer1: ["Texas", false],
-    answer2: ["Switzerland", false],
-    answer3: ["Italy", false],
-    answer4: ["Scotland", true]
+    question: "Who was the fastest player in NHL history to reach 1,000 career points?",
+    answer1: ["a8f1", false],
+    answer2: ["a8f2", false],
+    answer3: ["a8f3", false],
+    answer4: ["Wayne Gretzky", true]
   },
   {
-    question: "What boxer beat Connor McGregor to become 50-0?",
-    answer1: ["Floyd Mayweather", true],
-    answer2: ["Mohammed Ali", false],
-    answer3: ["Mike Tyson", false],
-    answer4: ["Cassius Clay", false]
+    question: "q9",
+    answer1: ["a9f1", true],
+    answer2: ["a9f2", false],
+    answer3: ["a9f3", false],
+    answer4: ["a9c", false]
   },
 ];
 
