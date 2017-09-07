@@ -64,17 +64,17 @@ var questions =  [
   },
   {
     question: "Who was the fastest player in NHL history to reach 1,000 career points?",
-    answer1: ["a8f1", false],
-    answer2: ["a8f2", false],
-    answer3: ["a8f3", false],
+    answer1: ["Sidney Crosby", false],
+    answer2: ["Alexander Ovechkin", false],
+    answer3: ["Mario Lemieux", false],
     answer4: ["Wayne Gretzky", true]
   },
   {
-    question: "q9",
-    answer1: ["a9f1", true],
-    answer2: ["a9f2", false],
-    answer3: ["a9f3", false],
-    answer4: ["a9c", false]
+    question: "Who is the only head basketball coach to win both an NCAA National Championship and an NBA Title?",
+    answer1: ["Larry Brown", true],
+    answer2: ["Gregg Popivich", false],
+    answer3: ["Steve Kerr", false],
+    answer4: ["Phil Jackson", false]
   },
 ];
 
